@@ -17,7 +17,7 @@ Projeto da disciplina LPOO — implementação de uma Game Engine genérica para
 | Checkpoint 2 — Da implementação para a Engine | 16/11 | ⏳ Não iniciado |
 | Apresentação / Entrega final | 16/12 | ⏳ Não iniciado |
 
-**Jogo do Checkpoint 1:** ainda não definido.
+**Jogo do Checkpoint 1:** liga pontos.
 
 ## Visão geral
 
