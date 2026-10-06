@@ -30,9 +30,22 @@ No Checkpoint 1, o foco é ter uma primeira versão **funcional e concreta** de 
 > ⏳ Instruções serão adicionadas assim que a primeira versão do jogo estiver funcional.
 
 ```bash
-# exemplo (a confirmar):
+# Somente nessa fase inicial:
 javac -d bin src/**/*.java
 java -cp bin Main
+```
+
+## Estrutura inicial (checkpoint 1)
+
+```
+src/
+├── Board.java
+├── GameManager.java
+├── Main.java
+├── Player.java
+├── Rules.java
+└── UiManager.java
+
 ```
 
 ## Estrutura do projeto
