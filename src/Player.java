@@ -1,13 +1,12 @@
 public class Player{
     private String name;
     private String symbol;
-    private int points;
+    private int points = 0;
 
     //construtor
-    public Player(String name, String symbol, int points){
+    public Player(String name, String symbol){
         this.name = name;
         this.symbol = symbol;
-        this.points = points;
     }
 
     public void addPoints(int pointAmount){this.points += pointAmount;}

@@ -31,7 +31,7 @@ No Checkpoint 1, o foco é ter uma primeira versão **funcional e concreta** de 
 
 ```bash
 # Somente nessa fase inicial:
-javac -d bin src/**/*.java
+javac -d bin src/*.java
 java -cp bin Main
 ```
 
