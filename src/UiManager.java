@@ -1,29 +1,10 @@
 import java.util.Scanner;
 
 public class UiManager{
-    //FIXME: ainda está em modo de testes
-    public int menu(Board board, Player player, Scanner scanner){
-        System.out.println(board.getBoard());
+    private Scanner scanner;
 
-        System.out.print("Linha: ");
-        int line = scanner.nextInt();
-        scanner.nextLine();
-
-        System.out.print("Coluna: ");
-        int column = scanner.nextInt();
-        scanner.nextLine();
-
-        System.out.print("Posição: ");
-        char position = scanner.next().charAt(0);
-
-        //board.setWall(line, column, position, player);
-
-        System.out.print("Digite 4 para sair: ");
-        int option = scanner.nextInt();
-        scanner.nextLine();
-
-        return option;
-
+    public UiManager(Scanner scanner){
+        this.scanner = scanner;
     }
 
     public void showBoard(Board board, Player p1, Player p2){
@@ -32,7 +13,7 @@ public class UiManager{
     }
 
     public void showScore(Player p1, Player p2){
-        String text = String.format(""" 
+        String text = String.format("""
                 %s | %s
                 %d | %d
                 """,p1.getSymbol(), p2.getSymbol(), p1.getPoints(), p2.getPoints());
@@ -40,32 +21,43 @@ public class UiManager{
         System.out.println(text);
     }
 
-    public Movement playerMovement(Player player, Scanner scanner, Movement move){
-        System.out.print("Linha: ");
-        int line = scanner.nextInt();
-        scanner.nextLine(); //limpa buffer
+    public Movement playerMovement(Player player){
+        System.out.printf("Vez de %s (%s)%n", player.getName(), player.getSymbol());
 
-        System.out.print("Coluna: ");
-        int column = scanner.nextInt();
-        scanner.nextLine(); //limpa buffer
+        int line = readInt("Linha: ");
+        int column = readInt("Coluna: ");
 
-        System.out.print("Posição: ");
-        char position = scanner.next().charAt(0); //por algum motivo nao existe nextchar()
+        System.out.print("Posição (u=cima, d=baixo, l=esquerda, r=direita): ");
+        String input = scanner.nextLine().trim().toLowerCase();
+        //entrada vazia vira ' ', que o isValidMove recusa
+        char position = input.isEmpty() ? ' ' : input.charAt(0); //por algum motivo nao existe nextchar()
 
         return new Movement(line, column, position);
+    }
+
+    //lê a linha inteira e converte; nextInt() quebrava o programa se o usuário digitasse letra
+    private int readInt(String label){
+        while (true){
+            System.out.print(label);
+            String input = scanner.nextLine().trim();
+            try {
+                return Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                showError("Digite um número.");
+            }
+        }
     }
 
     public void showError(String ErrorText){
         System.out.println(ErrorText);
     }
 
-    //TODO: ui empate
     public void showDraw(){
-
+        System.out.println("Fim de jogo! Empate.");
     }
 
-    //TODO: ui vencedor
     public void showWinner(Player player){
-
+        System.out.printf("Fim de jogo! %s (%s) venceu com %d pontos.%n",
+                player.getName(), player.getSymbol(), player.getPoints());
     }
 }

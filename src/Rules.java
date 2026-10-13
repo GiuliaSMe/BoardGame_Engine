@@ -12,8 +12,8 @@ public class Rules{
         else {return -1;}
     }
 
+    //a checagem de verdade fica no Board (que conhece as paredes); Rules só repassa
     public boolean isValidMove(Board board, Movement move){
-        
-
+        return board.isValidMove(move.getLine(), move.getColumn(), move.getPosition());
     }
 }
