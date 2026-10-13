@@ -1,8 +1,6 @@
 import java.util.Scanner;
 
 public class UiManager{
-    private Scanner scanner;
-
     public UiManager(Scanner scanner){
         this.scanner = scanner;
     }
@@ -21,22 +19,21 @@ public class UiManager{
         System.out.println(text);
     }
 
-    public Movement playerMovement(Player player){
+    public Movement playerMovement(Player player, Scanner scanner){
         System.out.printf("Vez de %s (%s)%n", player.getName(), player.getSymbol());
 
-        int line = readInt("Linha: ");
-        int column = readInt("Coluna: ");
+        int line = readInt("Linha: ", scanner);
+        int column = readInt("Coluna: ", scanner);
 
         System.out.print("Posição (u=cima, d=baixo, l=esquerda, r=direita): ");
-        String input = scanner.nextLine().trim().toLowerCase();
-        //entrada vazia vira ' ', que o isValidMove recusa
+        String input = scanner.nextLine().trim().toLowerCase();//entrada vazia vira ' ', que o isValidMove recusa
         char position = input.isEmpty() ? ' ' : input.charAt(0); //por algum motivo nao existe nextchar()
 
         return new Movement(line, column, position);
     }
 
     //lê a linha inteira e converte; nextInt() quebrava o programa se o usuário digitasse letra
-    private int readInt(String label){
+    private int readInt(String label, Scanner scanner){
         while (true){
             System.out.print(label);
             String input = scanner.nextLine().trim();

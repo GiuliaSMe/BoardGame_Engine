@@ -6,13 +6,14 @@
  */
 
 public class GameManager {
-
+    //atributos
     private Board board;
     private Player[] players;
     private Rules rules;
     private UiManager ui;
-    private int currentPlayer;   // índice em players: 0, 1, 0, 1...
+    private int currentPlayer; //índice dos players
 
+    //construtor
     public GameManager(Board board, Player[] players, Rules rules, UiManager ui) {
         this.board = board;
         this.players = players;
@@ -20,7 +21,7 @@ public class GameManager {
         this.ui = ui;
         this.currentPlayer = 0;
     }
-
+    
     public void play() {
         while (!rules.isGameOver(board)) {
             ui.showBoard(board, players[0], players[1]);
