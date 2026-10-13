@@ -1,20 +1,25 @@
 import java.util.Scanner;
 
-public class Main{
+public class Main {
     public static void main(String[] args) {
-        UiManager ui = new UiManager();
-        Board board = new Board(5, 5);
-        Player player = new Player("p1", "1");
-        Scanner scanner = new Scanner(System.in);
 
-        int option = -1;
 
-        while (option != 4){
+        String[] nomes = { "Ana", "Bia" };
+        String[] simbolos = { "A", "B" };
 
-            option =ui.menu(board, player, scanner);
+        Player[] players = new Player[nomes.length];
 
+        for (int i = 0; i < players.length; i++) {
+            players[i] = new Player(nomes[i], simbolos[i], i);
         }
+    /*
+    //Board board = new Board(5);
+    Player[] players = { new Player("Ana", "A",0), new Player("Bia", "B",1) };
+    //GameRules rules = new GameRules();
+    //UIManager ui = new UIManager();
 
-        scanner.close();
+    GameManager game = new GameManager(board, players, rules, ui);
+    game.play();
+     */
     }
 }
