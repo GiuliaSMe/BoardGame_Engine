@@ -1,27 +1,64 @@
 import java.util.Scanner;
 
 public class UiManager{
-    public int menu(Board board, Player player, Scanner scanner){
+    Scanner scanner = new Scanner(System.in);
+
+    public UiManager(Scanner scanner){
+        this.scanner = scanner;
+    }
+
+    public void showBoard(Board board, Player p1, Player p2){
+        showScore(p1, p2);
         System.out.println(board.getBoard());
+    }
 
-        System.out.print("Linha: ");
-        int line = scanner.nextInt();
-        scanner.nextLine();
+    public void showScore(Player p1, Player p2){
+        String text = String.format("""
 
-        System.out.print("Coluna: ");
-        int column = scanner.nextInt();
-        scanner.nextLine();
+            Score:
+                %s | %s
+                %d | %d
+                """,p1.getSymbol(), p2.getSymbol(), p1.getPoints(), p2.getPoints());
 
-        System.out.print("Posição: ");
-        char position = scanner.next().charAt(0);
+        System.out.println(text);
+    }
 
-        board.setWall(line, column, position, player);
+    public Movement playerMovement(Player player){
+        System.out.printf("Vez de %s (%s)\n\n", player.getName(), player.getSymbol());
 
-        System.out.print("Digite 4 para sair: ");
-        int option = scanner.nextInt();
-        scanner.nextLine();
+        int line = readInt("Linha: ");
+        int column = readInt("Coluna: ");
 
-        return option;
+        System.out.print("Posição (u=cima, d=baixo, l=esquerda, r=direita): ");
+        String input = scanner.nextLine().trim().toLowerCase();//entrada vazia vira ' ', que o isValidMove recusa
+        char position = input.isEmpty() ? ' ' : input.charAt(0); //por algum motivo nao existe nextchar()
 
+        return new Movement(line, column, position);
+    }
+
+    //lê a linha inteira e converte; nextInt() quebrava o programa se o usuário digitasse letra
+    private int readInt(String label){
+        while (true){
+            System.out.print(label);
+            String input = scanner.nextLine().trim();
+            try {
+                return Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                showError("\nDigite um número.");
+            }
+        }
+    }
+
+    public void showError(String ErrorText){
+        System.out.println(ErrorText);
+    }
+
+    public void showDraw(){
+        System.out.println("\nFim de jogo! Empate.");
+    }
+
+    public void showWinner(Player player){
+        System.out.printf("\nFim de jogo! %s (%s) venceu com %d pontos.\n",
+                player.getName(), player.getSymbol(), player.getPoints());
     }
 }

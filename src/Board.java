@@ -1,5 +1,6 @@
 public class Board{
-    private int columns;
+    //atributos
+    private int columns; 
     private int lines;
     private int[][] matrixWalls = new int[lines][columns];    
     private String[][] matrixOcupied = new String[lines][columns]; 
@@ -10,6 +11,7 @@ public class Board{
     private static int left = 0b0010;
     private static int right = 0b0001;
 
+    //construtor
     public Board(int lines, int columns){
         this.lines = lines;
         this.columns = columns;
@@ -17,63 +19,47 @@ public class Board{
         this.matrixOcupied = new String[lines][columns]; 
     }
     
-    //lógica binária para setar quais que paredes estão em que célula
+    //lógica binária para setar quais paredes estão em que célula
     public void setWall(int line, int column, char position, Player player){
-        if (cellExists(line, column) && !isCellOcupied(line, column) && !isWallOcupied(line, column, position)){
-            switch (position) {
-                case 'u':
-                    //adiciona parede
-                    this.matrixWalls[line][column] = this.matrixWalls[line][column] | up;
+        int wall; //parede na célula escolhida
+        int neighborWall; //mesma parede vista pela célula vizinha
+        int neighborLine = line;
+        int neighborColumn = column;
 
-                    //ajusta celula adjascente
-                    if (cellExists(line - 1, column)){this.matrixWalls[line-1][column] = this.matrixWalls[line-1][column] | down;}
+        //define a parede na celula escolhida e na celula vizinha de acordo com a posiçao da parede
+        switch (position) {
+            case 'u': wall = up;    neighborWall = down;  neighborLine = line - 1;     break;
+            case 'd': wall = down;  neighborWall = up;    neighborLine = line + 1;     break;
+            case 'l': wall = left;  neighborWall = right; neighborColumn = column - 1; break;
+            case 'r': wall = right; neighborWall = left;  neighborColumn = column + 1; break;
+            default: return;
+        }
 
-                    //se fechar as 4 paredes, setar ocupação
-                    if (isCellOcupied(line, column)){setOcupation(line, column, player);}
-                    break;
-                case 'd':
-                    //adiciona parede
-                    this.matrixWalls[line][column] = this.matrixWalls[line][column] | down;
+        //adiciona parede e verifica se fechou a célula
+        this.matrixWalls[line][column] = this.matrixWalls[line][column] | wall;
+        setOcupation(line, column, player); //nao só seta a ocupacao de uma celula fechada, mas tambem verifica se as condiçoes para fechamento foram atendidas
 
-                    //ajusta celula adjascente
-                    if (cellExists(line + 1, column)){this.matrixWalls[line+1][column] = this.matrixWalls[line+1][column] | up;}
-
-                    //se fechar as 4 paredes, setar ocupação
-                    if (isCellOcupied(line, column)){setOcupation(line, column, player);}
-                    break;
-                case 'l':
-                    //adiciona parede
-                    this.matrixWalls[line][column] = this.matrixWalls[line][column] | left;
-
-                    //ajusta celula adjascente 
-                    if (cellExists(line, column-1)){this.matrixWalls[line][column-1] = this.matrixWalls[line][column-1] | right;}
-
-                    //se fechar as 4 paredes, setar ocupação
-                    if (isCellOcupied(line, column)){setOcupation(line, column, player);}
-                    break;
-                case 'r':
-                    //adiciona parede
-                    this.matrixWalls[line][column] = this.matrixWalls[line][column] | right;
-
-                    //ajusta celula adjascente 
-                    if (cellExists(line, column+1)){this.matrixWalls[line][column+1] = this.matrixWalls[line][column+1] | left;}
-
-                    //se fechar as 4 paredes, setar ocupação
-                    if (isCellOcupied(line, column)){setOcupation(line, column, player);}
-                    break;
-                default:
-                    System.out.println("Invalid move");
-                    break;
-            }
+        //ajusta célula adjacente e verifica se ela também fechou
+        if (cellExists(neighborLine, neighborColumn)){
+            this.matrixWalls[neighborLine][neighborColumn] = this.matrixWalls[neighborLine][neighborColumn] | neighborWall;
+            setOcupation(neighborLine, neighborColumn, player);
         }
     }
-                
-    //atualiza a matriz de ocupação e adiciona pontos ao jogador
+
+    //se a célula ficou com as 4 paredes e ainda não tem dono, marca e dá o ponto
     public void setOcupation(int line, int column, Player player){
-        if (isCellOcupied(line, column)){
-            matrixOcupied[line][column] = player.getSymbol();
+        if (this.matrixWalls[line][column] == 0b1111 && this.matrixOcupied[line][column] == null){
+            this.matrixOcupied[line][column] = player.getSymbol();
             player.addPoints(1);
         }
+    }
+    
+    //verifica se a jogada é válida (posição existe, célula existe e parede está livre)
+    public boolean isValidMove(int line, int column, char position){
+        if (position != 'u' && position != 'd' && position != 'l' && position != 'r'){return false;}
+        else if(!cellExists(line, column)){return false;}
+        else if(isWallOcupied(line, column, position)){return false;}
+        else {return true;}
     }
 
     //verifica se a celula existe
@@ -86,7 +72,7 @@ public class Board{
     //verifica se a celula está ocupada
     public boolean isCellOcupied(int line, int column){
         //ou na matriz ocupada tá vazio, ou na matriz paredes tem 4 paredes
-        if (this.matrixOcupied[line][column] != null || this.matrixWalls[line][column] == 15){return true;}
+        if (this.matrixOcupied[line][column] != null || this.matrixWalls[line][column] == 0b1111){return true;}
         else {return false;}
     }
 
@@ -110,11 +96,11 @@ public class Board{
         }
     }
 
+    //metodos get
     public int getLines(){return this.lines;}
     public int getColumns(){return this.columns;}
 
     public String getBoard() {
-    
         StringBuilder board = new StringBuilder();
 
         board.append("   "); // espaço da coluna dos números das linhas
@@ -152,5 +138,15 @@ public class Board{
         board.append("+\n");
 
         return board.toString();
+    }
+    //checa se o ta buleiro está completo
+    public boolean isBoardFull(){
+        boolean full = true;
+        for (int l = 0; l < lines; l++){
+            for (int c = 0; c < columns; c++){
+                if (matrixOcupied[l][c] == null){full = false;}
+            }
+        }
+        return full;
     }
 }

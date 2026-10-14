@@ -42,6 +42,7 @@ src/
 ├── Board.java
 ├── GameManager.java
 ├── Main.java
+├── Movement.java
 ├── Player.java
 ├── Rules.java
 └── UiManager.java
@@ -81,14 +82,14 @@ games/
 
 O jogo implementado deve possuir:
 
-- [ ] Tabuleiro
-- [ ] Jogadores
-- [ ] Controle de turnos
-- [ ] Peças / marcações
-- [ ] Validação de jogadas
-- [ ] Condição de vitória
-- [ ] Condição de empate (quando aplicável)
-- [ ] Encerramento correto da partida
+- [x] Tabuleiro
+- [x] Jogadores
+- [x] Controle de turnos
+- [x] Peças / marcações
+- [x] Validação de jogadas
+- [x] Condição de vitória
+- [x] Condição de empate (quando aplicável)
+- [x] Encerramento correto da partida
 
 ## Roadmap
 
