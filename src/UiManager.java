@@ -1,6 +1,8 @@
 import java.util.Scanner;
 
 public class UiManager{
+    Scanner scanner = new Scanner(System.in);
+
     public UiManager(Scanner scanner){
         this.scanner = scanner;
     }
@@ -12,6 +14,8 @@ public class UiManager{
 
     public void showScore(Player p1, Player p2){
         String text = String.format("""
+
+            Score:
                 %s | %s
                 %d | %d
                 """,p1.getSymbol(), p2.getSymbol(), p1.getPoints(), p2.getPoints());
@@ -19,11 +23,11 @@ public class UiManager{
         System.out.println(text);
     }
 
-    public Movement playerMovement(Player player, Scanner scanner){
-        System.out.printf("Vez de %s (%s)%n", player.getName(), player.getSymbol());
+    public Movement playerMovement(Player player){
+        System.out.printf("Vez de %s (%s)\n\n", player.getName(), player.getSymbol());
 
-        int line = readInt("Linha: ", scanner);
-        int column = readInt("Coluna: ", scanner);
+        int line = readInt("Linha: ");
+        int column = readInt("Coluna: ");
 
         System.out.print("Posição (u=cima, d=baixo, l=esquerda, r=direita): ");
         String input = scanner.nextLine().trim().toLowerCase();//entrada vazia vira ' ', que o isValidMove recusa
@@ -33,14 +37,14 @@ public class UiManager{
     }
 
     //lê a linha inteira e converte; nextInt() quebrava o programa se o usuário digitasse letra
-    private int readInt(String label, Scanner scanner){
+    private int readInt(String label){
         while (true){
             System.out.print(label);
             String input = scanner.nextLine().trim();
             try {
                 return Integer.parseInt(input);
             } catch (NumberFormatException e) {
-                showError("Digite um número.");
+                showError("\nDigite um número.");
             }
         }
     }
@@ -50,11 +54,11 @@ public class UiManager{
     }
 
     public void showDraw(){
-        System.out.println("Fim de jogo! Empate.");
+        System.out.println("\nFim de jogo! Empate.");
     }
 
     public void showWinner(Player player){
-        System.out.printf("Fim de jogo! %s (%s) venceu com %d pontos.%n",
+        System.out.printf("\nFim de jogo! %s (%s) venceu com %d pontos.\n",
                 player.getName(), player.getSymbol(), player.getPoints());
     }
 }

@@ -4,16 +4,16 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        String[] nomes = { "Ana", "Bia" };
-        String[] simbolos = { "A", "B" };
+        String[] names = { "Ana", "Bia" };
+        String[] symbols = { "A", "B" };
+        Player[] players = new Player[names.length];
 
-        Player[] players = new Player[nomes.length];
-
+        //garante que o id do player é o indice do array de players, garantindo que o player saiba qual o seu indice (usado por rules)
         for (int i = 0; i < players.length; i++) {
-            players[i] = new Player(nomes[i], simbolos[i], i);
+            players[i] = new Player(names[i], symbols[i], i);
         }
 
-        Board board = new Board(5, 5);
+        Board board = new Board(1, 3);
         Rules rules = new Rules();
         UiManager ui = new UiManager(scanner);
 

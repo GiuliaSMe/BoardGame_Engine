@@ -57,9 +57,9 @@ public class Board{
     //verifica se a jogada é válida (posição existe, célula existe e parede está livre)
     public boolean isValidMove(int line, int column, char position){
         if (position != 'u' && position != 'd' && position != 'l' && position != 'r'){return false;}
-        if else(!cellExists(line, column)){return false;}
-        if else(isWallOcupied(line, column, position)){return false;}
-        else {return true}
+        else if(!cellExists(line, column)){return false;}
+        else if(isWallOcupied(line, column, position)){return false;}
+        else {return true;}
     }
 
     //verifica se a celula existe
