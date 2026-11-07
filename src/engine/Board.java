@@ -1,3 +1,4 @@
+package engine;
 public class Board{
     //atributos
     private int columns; 

@@ -1,3 +1,4 @@
+package engine;
 public class Rules{
     //checa se o board ta completo
     public boolean isGameOver(Board board){

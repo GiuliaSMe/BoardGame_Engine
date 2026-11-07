@@ -1,3 +1,6 @@
+package engine;
+import ui.UiManager;
+
 public class GameManager {
     //atributos
     private Board board;
