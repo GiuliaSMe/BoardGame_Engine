@@ -13,8 +13,8 @@ Projeto da disciplina LPOO — implementação de uma Game Engine genérica para
 
 | Etapa | Data | Status |
 |---|---|---|
-| Checkpoint 1 — Primeiro jogo | 14/10 | 🚧 Em andamento |
-| Checkpoint 2 — Da implementação para a Engine | 16/11 | ⏳ Não iniciado |
+| Checkpoint 1 — Primeiro jogo | 14/10 | ✅ Concluido |
+| Checkpoint 2 — Da implementação para a Engine | 16/11 | 🚧 Em andamento |
 | Apresentação / Entrega final | 16/12 | ⏳ Não iniciado |
 
 **Jogo do Checkpoint 1:** liga pontos.
@@ -29,11 +29,6 @@ No Checkpoint 1, o foco é ter uma primeira versão **funcional e concreta** de 
 
 > ⏳ Instruções serão adicionadas assim que a primeira versão do jogo estiver funcional.
 
-```bash
-# Somente nessa fase inicial:
-javac -d bin src/*.java
-java -cp bin Main
-```
 
 ## Estrutura inicial (checkpoint 1)
 
@@ -46,10 +41,16 @@ src/
 ├── Player.java
 ├── Rules.java
 └── UiManager.java
-
 ```
 
-## Estrutura do projeto
+```bash
+# compilação checkpoint 1:
+javac -d bin src/*.java
+java -cp bin Main
+```
+
+
+## Estrutura do projeto (checkpoint 2)
 
 ```
 src/
@@ -74,6 +75,12 @@ src/
 games/
 ├── jogo1.json
 └── jogo2.json
+```
+
+```bash
+# compilação checkpoint 2 (powershell):
+javac -d bin (Get-ChildItem -Path src -Recurse -Filter *.java).FullName
+java -cp bin Main
 ```
 
 > Estrutura inicial de referência da disciplina. Pode evoluir conforme o projeto avança — atualizar esta seção quando isso acontecer.
