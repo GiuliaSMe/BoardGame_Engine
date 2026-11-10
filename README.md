@@ -54,6 +54,10 @@ java -cp bin Main
 
 ```
 src/
+├── config/
+│   ├── GameConfig.java
+│   └── GameLoader.java
+│
 ├── engine/
 │   ├── Game.java
 │   ├── Board.java
@@ -61,14 +65,8 @@ src/
 │   ├── Piece.java
 │   └── ...
 │
-├── rules/
-│   ├── WinCondition.java
-│   ├── AlignmentWinCondition.java
-│   └── ...
-│
-├── config/
-│   ├── GameConfig.java
-│   └── GameLoader.java
+├── ui/
+│   └── UiManager.java
 │
 └── Main.java
 

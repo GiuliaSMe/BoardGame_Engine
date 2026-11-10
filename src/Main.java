@@ -1,11 +1,8 @@
 
 import java.util.Scanner;
 
-import engine.Board;
-import engine.GameManager;
-import engine.Player;
-import engine.Rules;
-import ui.UiManager;
+import engine.*;
+import ui.*;
 
 public class Main {
     public static void main(String[] args) {
