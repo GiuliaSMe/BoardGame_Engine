@@ -14,7 +14,7 @@ Projeto da disciplina LPOO — implementação de uma Game Engine genérica para
 | Etapa | Data | Status |
 |---|---|---|
 | Checkpoint 1 — Primeiro jogo | 14/10 | ✅ Concluido |
-| Checkpoint 2 — Da implementação para a Engine | 16/11 | 🚧 Em andamento |
+| Checkpoint 2 — Da implementação para a Engine | 18/11 | 🚧 Em andamento |
 | Apresentação / Entrega final | 16/12 | ⏳ Não iniciado |
 
 **Jogo do Checkpoint 1:** liga pontos.
@@ -54,25 +54,19 @@ java -cp bin Main
 
 ```
 src/
-├── config/
-│   ├── GameConfig.java
-│   └── GameLoader.java
-│
 ├── engine/
-│   ├── Game.java
-│   ├── Board.java
-│   ├── Player.java
-│   ├── Piece.java
-│   └── ...
-│
+│   ├── core/          ← Board, Player, Movement, GameManager 
+│   ├── rules/         
+│   │   ├── move/      ← contrato de jogada + Liga Pontos + Jogo da Velha (TODO)
+│   │   ├── turn/      ← contrato de turno + "repete se fechar" + alternância simples (TODO)
+│   │   ├── win/       ← contrato de vitória + mais pontos + alinhamento de N (TODO)
+│   │   └── end/       ← contrato de fim/empate + um para cada jogo (TODO)
+│   └── exceptions/    ← InvalidMoveException, InvalidPositionException, InvalidConfigurationException
+├── config/            ← GameConfig, GameLoader 
 ├── ui/
-│   └── UiManager.java
-│
 └── Main.java
-
-games/
-├── jogo1.json
-└── jogo2.json
+games/                 ← liga_pontos.json, jogo_da_velha.json
+docs/                  ← diagrama, tabela de diferenças (TODO)
 ```
 
 ```bash
@@ -99,7 +93,7 @@ O jogo implementado deve possuir:
 ## Roadmap
 
 - **Checkpoint 1 (14/10):** jogo único, funcional, em Java, executado pelo terminal.
-- **Checkpoint 2 (16/11):** generalização para uma Engine capaz de rodar pelo menos dois jogos diferentes a partir de arquivos de configuração JSON, compartilhando efetivamente os componentes da Engine.
+- **Checkpoint 2 (18/11):** generalização para uma Engine capaz de rodar pelo menos dois jogos diferentes a partir de arquivos de configuração JSON, compartilhando efetivamente os componentes da Engine.
 - **Entrega final (16/12):** Engine completa e extensível, capaz de interpretar novas configurações que usem comportamentos já suportados, sem alteração de código.
 
 ## Diagrama de classes

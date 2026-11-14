@@ -1,7 +1,9 @@
 package ui;
 import java.util.Scanner;
 
-import engine.*;
+import engine.core.Board;
+import engine.core.Movement;
+import engine.core.Player;
 
 public class UiManager{
     Scanner scanner = new Scanner(System.in);

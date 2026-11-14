@@ -1,7 +1,10 @@
 
 import java.util.Scanner;
 
-import engine.*;
+import engine.core.Board;
+import engine.core.GameManager;
+import engine.core.Player;
+import engine.rules.Rules;
 import ui.*;
 
 public class Main {

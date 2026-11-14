@@ -1,4 +1,9 @@
-package engine;
+package engine.rules;
+
+import engine.core.Board;
+import engine.core.Movement;
+import engine.core.Player;
+
 public class Rules{
     //checa se o board ta completo
     public boolean isGameOver(Board board){

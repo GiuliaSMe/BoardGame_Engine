@@ -1,4 +1,5 @@
-package engine;
+package engine.core;
+import engine.rules.Rules;
 import ui.UiManager;
 
 public class GameManager {
