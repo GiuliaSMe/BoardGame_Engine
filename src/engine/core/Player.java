@@ -1,3 +1,4 @@
+package engine.core;
 public class Player{
     //atributos
     private String name;

@@ -13,8 +13,8 @@ Projeto da disciplina LPOO — implementação de uma Game Engine genérica para
 
 | Etapa | Data | Status |
 |---|---|---|
-| Checkpoint 1 — Primeiro jogo | 14/10 | 🚧 Em andamento |
-| Checkpoint 2 — Da implementação para a Engine | 16/11 | ⏳ Não iniciado |
+| Checkpoint 1 — Primeiro jogo | 14/10 | ✅ Concluido |
+| Checkpoint 2 — Da implementação para a Engine | 18/11 | 🚧 Em andamento |
 | Apresentação / Entrega final | 16/12 | ⏳ Não iniciado |
 
 **Jogo do Checkpoint 1:** liga pontos.
@@ -29,11 +29,6 @@ No Checkpoint 1, o foco é ter uma primeira versão **funcional e concreta** de 
 
 > ⏳ Instruções serão adicionadas assim que a primeira versão do jogo estiver funcional.
 
-```bash
-# Somente nessa fase inicial:
-javac -d bin src/*.java
-java -cp bin Main
-```
 
 ## Estrutura inicial (checkpoint 1)
 
@@ -46,34 +41,38 @@ src/
 ├── Player.java
 ├── Rules.java
 └── UiManager.java
-
 ```
 
-## Estrutura do projeto
+```bash
+# compilação checkpoint 1:
+javac -d bin src/*.java
+java -cp bin Main
+```
+
+
+## Estrutura do projeto (checkpoint 2)
 
 ```
 src/
 ├── engine/
-│   ├── Game.java
-│   ├── Board.java
-│   ├── Player.java
-│   ├── Piece.java
-│   └── ...
-│
-├── rules/
-│   ├── WinCondition.java
-│   ├── AlignmentWinCondition.java
-│   └── ...
-│
-├── config/
-│   ├── GameConfig.java
-│   └── GameLoader.java
-│
+│   ├── core/          ← Board, Player, Movement, GameManager 
+│   ├── rules/         
+│   │   ├── move/      ← contrato de jogada + Liga Pontos + Jogo da Velha (TODO)
+│   │   ├── turn/      ← contrato de turno + "repete se fechar" + alternância simples (TODO)
+│   │   ├── win/       ← contrato de vitória + mais pontos + alinhamento de N (TODO)
+│   │   └── end/       ← contrato de fim/empate + um para cada jogo (TODO)
+│   └── exceptions/    ← InvalidMoveException, InvalidPositionException, InvalidConfigurationException
+├── config/            ← GameConfig, GameLoader 
+├── ui/
 └── Main.java
+games/                 ← liga_pontos.json, jogo_da_velha.json
+docs/                  ← diagrama, tabela de diferenças (TODO)
+```
 
-games/
-├── jogo1.json
-└── jogo2.json
+```bash
+# compilação checkpoint 2 (powershell):
+javac -d bin (Get-ChildItem -Path src -Recurse -Filter *.java).FullName
+java -cp bin Main
 ```
 
 > Estrutura inicial de referência da disciplina. Pode evoluir conforme o projeto avança — atualizar esta seção quando isso acontecer.
@@ -94,7 +93,7 @@ O jogo implementado deve possuir:
 ## Roadmap
 
 - **Checkpoint 1 (14/10):** jogo único, funcional, em Java, executado pelo terminal.
-- **Checkpoint 2 (16/11):** generalização para uma Engine capaz de rodar pelo menos dois jogos diferentes a partir de arquivos de configuração JSON, compartilhando efetivamente os componentes da Engine.
+- **Checkpoint 2 (18/11):** generalização para uma Engine capaz de rodar pelo menos dois jogos diferentes a partir de arquivos de configuração JSON, compartilhando efetivamente os componentes da Engine.
 - **Entrega final (16/12):** Engine completa e extensível, capaz de interpretar novas configurações que usem comportamentos já suportados, sem alteração de código.
 
 ## Diagrama de classes
