@@ -1,6 +1,6 @@
 package engine.rules;
 
-import engine.board.Board;
+import engine.board.*;
 import engine.core.Movement;
 import engine.core.Player;
 
@@ -20,6 +20,6 @@ public class Rules{
 
     //a verificaçao de verdade fica no Board (que conhece as paredes), rules só repassa a info
     public boolean isValidMove(Board board, Movement move){
-        return board.isValidMove(move.getLine(), move.getColumn(), move.getPosition());
+        return board.isValidMove(move);
     }
 }

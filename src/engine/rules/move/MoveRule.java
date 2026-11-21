@@ -1,6 +1,6 @@
 package engine.rules.move;
 
-import engine.core.Board;
+import engine.board.*;
 import engine.core.Movement;
 import engine.core.Player;
 
