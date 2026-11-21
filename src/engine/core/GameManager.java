@@ -1,4 +1,5 @@
 package engine.core;
+import engine.board.Board;
 import engine.rules.Rules;
 import ui.UiManager;
 

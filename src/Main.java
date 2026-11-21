@@ -1,7 +1,7 @@
 
 import java.util.Scanner;
 
-import engine.core.Board;
+import engine.board.Board;
 import engine.core.GameManager;
 import engine.core.Player;
 import engine.rules.Rules;

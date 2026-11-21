@@ -1,7 +1,7 @@
 package ui;
 import java.util.Scanner;
 
-import engine.core.Board;
+import engine.board.Board;
 import engine.core.Movement;
 import engine.core.Player;
 
