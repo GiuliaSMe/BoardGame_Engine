@@ -1,0 +1,11 @@
+{
+  "game": "Liga dos Pontos",
+  "board": { "rows": 3, "columns": 3 },
+  "players": { "count": 2, "symbols": ["A", "B"] },
+  "rules": {
+    "placement": "WALL_ON_CELL_SIDE",
+    "turn": "EXTRA_TURN_ON_SCORE",
+    "winCondition": { "type": "MOST_POINTS" },
+    "endCondition": "BOARD_FULL"
+  }
+}
