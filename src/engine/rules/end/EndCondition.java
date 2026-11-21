@@ -1,6 +1,6 @@
 package engine.rules.end;
 
-import engine.core.Board;
+import engine.board.*;
 import engine.core.Player;
 
 //contrato de fim de jogo
