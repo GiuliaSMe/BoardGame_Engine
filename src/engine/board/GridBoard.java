@@ -5,8 +5,8 @@ import engine.core.*;
 public class GridBoard extends Board{
 
     //construtor
-    public GridBoard(int lines, int columns){
-        super(lines,columns);
+    public GridBoard(int rows, int columns){
+        super(rows,columns);
     }
 
     @Override public String getBoard() {
@@ -19,11 +19,11 @@ public class GridBoard extends Board{
         }
         board.append("\n");
 
-        for (int l = 0; l < lines; l++) {
+        for (int r = 0; r < rows; r++) {
             board.append(separator);
-            board.append(String.format("%2d ", l));
+            board.append(String.format("%2d ", r));
             for (int c = 0; c < columns; c++) {
-                String symbol = matrixOcupied[l][c];
+                String symbol = matrixOcupied[r][c];
                 board.append("|");
                 board.append(symbol != null ? " " + symbol + " " : "   ");
             }
@@ -36,17 +36,17 @@ public class GridBoard extends Board{
 
     @Override public void setOcupation(Movement movement, Player player){
         //TODO
-        int line  = movement.getLine();
+        int row  = movement.getRow();
         int column  = movement.getColumn();
 
-        if (isValidMove(movement)){matrixOcupied[line][column] = player.getSymbol();}
+        if (isValidMove(movement)){matrixOcupied[row][column] = player.getSymbol();}
     }
 
     @Override public boolean isValidMove(Movement movement){
-        int line = movement.getLine();
+        int row = movement.getRow();
         int column = movement.getColumn();
 
-        if(!cellExists(line, column)){return false;}
+        if(!cellExists(row, column)){return false;}
         else {return true;}
     }
 }

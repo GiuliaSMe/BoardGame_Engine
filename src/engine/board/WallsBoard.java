@@ -11,58 +11,58 @@ public class WallsBoard extends Board{
     private static int left = 0b0010;
     private static int right = 0b0001;
 
-    public WallsBoard(int lines, int columns){
-        super(lines,columns);
-        this.matrixWalls = new int[lines][columns]; 
+    public WallsBoard(int rows, int columns){
+        super(rows,columns);
+        this.matrixWalls = new int[rows][columns]; 
     }
 
     //lógica binária para setar quais paredes estão em que célula
     public void setWall(Movement movement, Player player){
 
         char position = movement.getPosition();
-        int line = movement.getLine();
+        int row = movement.getRow();
         int column = movement.getColumn();
 
         int wall; //parede na célula escolhida
         int neighborWall; //mesma parede vista pela célula vizinha
-        int neighborLine = line;
+        int neighborrow = row;
         int neighborColumn = column;
 
         //define a parede na celula escolhida e na celula vizinha de acordo com a posiçao da parede
         switch (position) {
-            case 'u': wall = up;    neighborWall = down;  neighborLine = line - 1;     break;
-            case 'd': wall = down;  neighborWall = up;    neighborLine = line + 1;     break;
+            case 'u': wall = up;    neighborWall = down;  neighborrow = row - 1;     break;
+            case 'd': wall = down;  neighborWall = up;    neighborrow = row + 1;     break;
             case 'l': wall = left;  neighborWall = right; neighborColumn = column - 1; break;
             case 'r': wall = right; neighborWall = left;  neighborColumn = column + 1; break;
             default: return;
         }
 
         //adiciona parede e verifica se fechou a célula
-        this.matrixWalls[line][column] = this.matrixWalls[line][column] | wall;
+        this.matrixWalls[row][column] = this.matrixWalls[row][column] | wall;
         setOcupation(movement, player); //nao só seta a ocupacao de uma celula fechada, mas tambem verifica se as condiçoes para fechamento foram atendidas
 
         //ajusta célula adjacente e verifica se ela também fechou
-        if (cellExists(neighborLine, neighborColumn)){
-            this.matrixWalls[neighborLine][neighborColumn] = this.matrixWalls[neighborLine][neighborColumn] | neighborWall;
-            Movement neighbordMovement = new Movement(neighborLine, neighborColumn, 'u'); //posiçao escolhida arbitrariamente enquanto não temos um movement generico
+        if (cellExists(neighborrow, neighborColumn)){
+            this.matrixWalls[neighborrow][neighborColumn] = this.matrixWalls[neighborrow][neighborColumn] | neighborWall;
+            Movement neighbordMovement = new Movement(neighborrow, neighborColumn, 'u'); //posiçao escolhida arbitrariamente enquanto não temos um movement generico
             setOcupation(neighbordMovement, player);
         }
     }
 
     //verifica se a parede está ocupada
-    public boolean isWallOcupied(int line, int column, char position){
+    public boolean isWallOcupied(int row, int column, char position){
         switch (position) {
             case 'u':
-                if ((this.matrixWalls[line][column] & up) != 0){return true;}
+                if ((this.matrixWalls[row][column] & up) != 0){return true;}
                 else {return false;}
             case 'd':
-                if ((this.matrixWalls[line][column] & down) != 0){return true;}
+                if ((this.matrixWalls[row][column] & down) != 0){return true;}
                 else {return false;}
             case 'l':
-                if ((this.matrixWalls[line][column] & left) != 0){return true;}
+                if ((this.matrixWalls[row][column] & left) != 0){return true;}
                 else {return false;}
             case 'r':
-                if ((this.matrixWalls[line][column] & right) != 0){return true;}
+                if ((this.matrixWalls[row][column] & right) != 0){return true;}
                 else {return false;}
             default:
                 return false;
@@ -78,7 +78,7 @@ public class WallsBoard extends Board{
         }
         board.append("\n");
 
-        for (int l = 0; l < lines; l++) {
+        for (int l = 0; l < rows; l++) {
             // linha dos pontos + paredes horizontais
             board.append("   ");
             for (int c = 0; c < columns; c++) {
@@ -102,7 +102,7 @@ public class WallsBoard extends Board{
         board.append("   ");
         for (int c = 0; c < columns; c++) {
             board.append("+");
-            board.append(isWallOcupied(lines - 1, c, 'd') ? "---" : "   ");
+            board.append(isWallOcupied(rows - 1, c, 'd') ? "---" : "   ");
         }
         board.append("+\n");
 
@@ -112,22 +112,22 @@ public class WallsBoard extends Board{
     @Override public boolean isValidMove(Movement movement){
 
         char position = movement.getPosition();
-        int line = movement.getLine();
+        int row = movement.getRow();
         int column = movement.getColumn();
 
         if (position != 'u' && position != 'd' && position != 'l' && position != 'r'){return false;}
-        else if(!cellExists(line, column)){return false;}
-        else if(isWallOcupied(line, column, position)){return false;}
+        else if(!cellExists(row, column)){return false;}
+        else if(isWallOcupied(row, column, position)){return false;}
         else {return true;}
     }
 
     @Override public void setOcupation(Movement movement, Player player){
 
-        int line = movement.getLine();
+        int row = movement.getRow();
         int column = movement.getColumn();
 
-        if (this.matrixWalls[line][column] == 0b1111 && this.matrixOcupied[line][column] == null){
-            this.matrixOcupied[line][column] = player.getSymbol();
+        if (this.matrixWalls[row][column] == 0b1111 && this.matrixOcupied[row][column] == null){
+            this.matrixOcupied[row][column] = player.getSymbol();
             player.addPoints(1);
         }
     }

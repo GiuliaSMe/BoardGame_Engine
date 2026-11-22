@@ -71,8 +71,8 @@ docs/                  ← diagrama, tabela de diferenças (TODO)
 
 ```bash
 # compilação checkpoint 2 (powershell):
-javac -d bin (Get-ChildItem -Path src -Recurse -Filter *.java).FullName
-java -cp bin Main
+javac -d bin -cp lib\gson-2.11.0.jar (Get-ChildItem -Path src -Recurse -Filter *.java).FullName
+java -cp "bin;lib\gson-2.11.0.jar" Main
 ```
 
 > Estrutura inicial de referência da disciplina. Pode evoluir conforme o projeto avança — atualizar esta seção quando isso acontecer.

@@ -1,32 +1,27 @@
+import config.GameConfig;
+import config.GameLoader;
+import engine.exceptions.InvalidConfigurationException;
 
-import java.util.Scanner;
-
-import engine.board.Board;
-import engine.core.GameManager;
-import engine.core.Player;
-import engine.rules.Rules;
-import ui.*;
+//só serve de testes, ainda nao gera nenhum jogo pelo json, mas tá lendo ele corretamente
+//oq falta é o gamemanager
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        try {
+            GameConfig config = GameLoader.load("games/liga_pontos.json");
 
-        String[] names = { "Ana", "Bia" };
-        String[] symbols = { "A", "B" };
-        Player[] players = new Player[names.length];
+            System.out.println("Jogo: " + config.getGame());
+            System.out.println("Linhas: " + config.getBoard().getRows());
+            System.out.println("Colunas: " + config.getBoard().getColumns());
+            System.out.println("Jogadores: " + config.getPlayers().getCount());
+            System.out.println("Símbolos: " + String.join(", ", config.getPlayers().getSymbols()));
+            System.out.println("Placement: " + config.getRules().getPlacement());
+            System.out.println("Turn: " + config.getRules().getTurn());
+            System.out.println("End: " + config.getRules().getEndCondition());
+            System.out.println("Win type: " + config.getRules().getWinCondition().getType());
 
-        //garante que o id do player é o indice do array de players, garantindo que o player saiba qual o seu indice (usado por rules)
-        for (int i = 0; i < players.length; i++) {
-            players[i] = new Player(names[i], symbols[i], i);
+        } catch (InvalidConfigurationException e) {
+            System.out.println("Erro na configuração: " + e.getMessage());
         }
-
-        Board board = new Board(1, 3);
-        Rules rules = new Rules();
-        UiManager ui = new UiManager(scanner);
-
-        GameManager game = new GameManager(board, players, rules, ui);
-        game.play();
-
-        scanner.close();
     }
 }
