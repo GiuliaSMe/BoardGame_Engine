@@ -1,0 +1,45 @@
+{
+    "game": "Connect Four",
+    "board": {
+        "type": "GRID",
+        "rows": 6,
+        "columns": 7
+    },
+    "players": {
+        "count": 2,
+        "symbols": ["X", "O"]
+    },
+    "pieces": [
+        {
+        "type": "NORMAL",
+        "symbol": "X",
+        "player": 1,
+        "initialPositions": []
+        },
+        {
+        "type": "NORMAL",
+        "symbol": "O",
+        "player": 2,
+        "initialPositions": []
+        }
+    ],
+    "movement": [
+        {
+        "type": "COLUMN_DROP"
+        }
+    ],
+    "rules": {
+        "placement": "EMPTY_POSITION",
+        "turn": "ALTERNATE",
+        "winCondition": {
+        "type": "ALIGNMENT",
+        "quantity": 4,
+        "directions": [
+            "HORIZONTAL",
+            "VERTICAL",
+            "DIAGONAL"
+        ]
+        },
+        "endCondition": "WIN_OR_BOARD_FULL"
+    }
+}
