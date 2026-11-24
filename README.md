@@ -98,7 +98,9 @@ O jogo implementado deve possuir:
 
 ## Diagrama de classes
 
-> A ser adicionado (`docs/diagrama-classes.png` ou similar).
+<p align="center">
+  <img src="docs\diagrama.png" alt="diagrama de classes" width="90%">
+</p>
 
 ## Referências
 
