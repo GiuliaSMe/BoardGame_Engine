@@ -1,0 +1,100 @@
+
+{
+    "game": "Damas Internacionais",
+    "board": {
+    "type": "GRID",
+    "rows": 10,
+    "columns": 10,
+    "playableCells": "DARK"
+    },
+    "players": {
+    "count": 2,
+    "symbols": ["x", "o"]
+    },
+    "pieces": [
+    {
+        "type": "NORMAL",
+        "symbol": "x",
+        "player": 1,
+        "initialPositions": [
+        [0, 1], [0, 3], [0, 5], [0, 7], [0, 9],
+        [1, 0], [1, 2], [1, 4], [1, 6], [1, 8],
+        [2, 1], [2, 3], [2, 5], [2, 7], [2, 9],
+        [3, 0], [3, 2], [3, 4], [3, 6], [3, 8]
+        ]
+    },
+    {
+        "type": "NORMAL",
+        "symbol": "o",
+        "player": 2,
+        "initialPositions": [
+        [6, 1], [6, 3], [6, 5], [6, 7], [6, 9],
+        [7, 0], [7, 2], [7, 4], [7, 6], [7, 8],
+        [8, 1], [8, 3], [8, 5], [8, 7], [8, 9],
+        [9, 0], [9, 2], [9, 4], [9, 6], [9, 8]
+        ]
+    },
+    {
+        "type": "KING",
+        "symbol": "X",
+        "player": 1,
+        "initialPositions": []
+    },
+    {
+        "type": "KING",
+        "symbol": "O",
+        "player": 2,
+        "initialPositions": []
+    }
+    ],
+    "movement": [
+    {
+        "type": "RELOCATION"
+    }
+    ],
+    "rules": {
+    "placement": "EMPTY_POSITION",
+    "move": {
+        "type": "DIAGONAL",
+        "normalPiece": {
+        "directions": ["FORWARD"],
+        "distance": 1
+        },
+        "kingPiece": {
+        "directions": ["FORWARD", "BACKWARD"],
+        "distance": "UNLIMITED"
+        }
+    },
+    "capture": {
+        "mandatory": true,
+        "normalPiece": {
+        "directions": ["FORWARD", "BACKWARD"],
+        "distance": 2
+        },
+        "kingPiece": {
+        "directions": ["FORWARD", "BACKWARD"],
+        "distance": "UNLIMITED"
+        },
+        "multiple": true,
+        "maximumCapture": true,
+        "capturedPieceRemoval": "AFTER_SEQUENCE"
+    },
+    "promotion": {
+        "condition": "REACH_OPPOSITE_END",
+        "from": "NORMAL",
+        "to": "KING",
+        "duringCapture": "AFTER_SEQUENCE"
+    },
+    "turn": "ALTERNATE",
+    "winCondition": {
+        "type": "NO_PIECES_OR_NO_LEGAL_MOVES"
+    },
+    "endCondition": {
+        "type": "WIN_OR_DRAW",
+        "drawConditions": [
+        "REPETITION",
+        "MOVE_LIMIT"
+        ]
+    }
+    }
+}
