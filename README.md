@@ -94,7 +94,7 @@ O jogo implementado deve possuir:
 
 - **Checkpoint 1 (14/10):** jogo único, funcional, em Java, executado pelo terminal.
 - **Checkpoint 2 (18/11):** generalização para uma Engine capaz de rodar pelo menos dois jogos diferentes a partir de arquivos de configuração JSON, compartilhando efetivamente os componentes da Engine.
-- **Entrega final (16/12):** Engine completa e extensível, capaz de interpretar novas configurações que usem comportamentos já suportados, sem alteração de código.
+- **Entrega final (07/12):** Engine completa e extensível, capaz de interpretar novas configurações que usem comportamentos já suportados, sem alteração de código.
 
 ## Diagrama de classes
 
