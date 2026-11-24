@@ -16,8 +16,8 @@ O projeto tem como objetivo construir uma Engine capaz de interpretar arquivos d
 | Etapa | Data | Status |
 |---|---|---|
 | Checkpoint 1 — Primeiro jogo | 14/10 | ✅ Concluído |
-| Checkpoint 2 — Generalização da Engine | 18/11 | 🚧 Em andamento |
-| Entrega final | 16/12 | ⏳ Não iniciada |
+| Checkpoint 2 — Generalização da Engine | 25/11 | 🚧 Em andamento |
+| Entrega final | 07/12 | ⏳ Não iniciada |
 
 - **Checkpoint 1 — Primeiro jogo:** implementação de um jogo de tabuleiro funcional em Java, executado pelo terminal, com suas principais mecânicas e regras.
 - **Checkpoint 2 — Generalização da Engine:** adaptação da implementação para executar pelo menos dois jogos diferentes a partir de arquivos JSON, compartilhando componentes.
@@ -494,8 +494,6 @@ A estrutura planejada é uma referência e poderá ser ajustada conforme as resp
 
 ### Checkpoint 1 — Primeiro jogo
 
-**Data:** 14/10
-
 **Jogo implementado:** Liga dos Pontos.
 
 O primeiro checkpoint teve como objetivo desenvolver um jogo funcional em Java, executado pelo terminal, utilizando os conceitos de orientação a objetos estudados na disciplina.
@@ -514,8 +512,6 @@ Funcionalidades desenvolvidas:
 A implementação inicial utilizava classes diretamente relacionadas à execução do Liga dos Pontos.
 
 ### Checkpoint 2 — Generalização da Engine
-
-**Data:** 18/11
 
 O segundo checkpoint tem como objetivo evoluir a implementação inicial para uma Engine capaz de executar pelo menos dois jogos diferentes a partir de arquivos JSON, compartilhando componentes.
 
